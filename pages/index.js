@@ -7,7 +7,7 @@ export default function Home({ blogsList, setBlogsList }) {
 	return (
 		<div>
 			<HeaderComponent />
-			<div className="row justify-content-center" style={{ width: "98%", paddingTop: "5%" }}>
+			<div className="row justify-content-center" style={{ width: "99.999%", paddingTop: "5%" }}>
 				<div className="col-sm-8">
 					<h2>
 						Features
