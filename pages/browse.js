@@ -1,20 +1,34 @@
 import Blog from "../components/blog";
 import HeaderComponent from "../components/header";
 import React, { useState } from "react";
+import {toast} from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Browse() {
-	const [blogsList, setBlogsList] = useState([
-		{ title: "pp", author: "ppp", body: "enfjenfef" },
-		{ title: "eo", author: "yoy", body: "gnkrgjkrn" },
-		{ title: "4p", author: "p5p", body: "enf6enfef" },
-		{ title: "e5", author: "y4y", body: "gnk3gjkrn" }
-	]);
+toast.configure()
+
+export default function Browse({ blogsList, setBlogsList }) {
+	React.useEffect(()=>{
+		let initBlogs;
+		if (localStorage.getItem("blogs") === null) {
+			initBlogs = [];
+		}
+		else {
+			initBlogs = JSON.parse(localStorage.getItem("blogs"));
+		}
+		setBlogsList(initBlogs);
+	}, []);
+
 	const onDelete = (blog) => {
-		console.log("Blog Deleted -", blog);
 		setBlogsList(blogsList.filter((e) => {
 			return e !== blog;
-		}))
+		}));
+		toast('Blog Deleted Successfully!');
 	}
+
+	React.useEffect(()=>{
+        localStorage.setItem("blogs", JSON.stringify(blogsList));
+    }, [blogsList]);
+
 	return (
 		<div>
 			<HeaderComponent />
@@ -22,7 +36,7 @@ export default function Browse() {
 				{
 					blogsList.length == 0 ? "Such empty, much wow. Start blogging now!" :
 						blogsList.map((blog) => {
-							return <Blog blog={blog} key={blogsList.indexOf(blog)} onDelete={onDelete} />
+							return <Blog blog={blog} key={blog.sno} onDelete={onDelete} />
 						})
 				}
 			</div>
