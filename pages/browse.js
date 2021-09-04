@@ -3,6 +3,7 @@ import HeaderComponent from "../components/header";
 import React, { useState } from "react";
 import {toast} from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
 
 toast.configure()
 
@@ -31,6 +32,9 @@ export default function Browse({ blogsList, setBlogsList }) {
 
 	return (
 		<div>
+			<Head>
+                <title>Blogging App</title>
+            </Head>
 			<HeaderComponent />
 			<div className="row justify-content-center" style={{ width: "98%", paddingTop: "7.5%" }}>
 				{

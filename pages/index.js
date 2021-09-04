@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import HeaderComponent from "../components/header";
 
 export default function Home({ blogsList, setBlogsList }) {
 	return (
 		<div>
+			<Head>
+				<title>Blogging App</title>
+			</Head>
 			<HeaderComponent />
 			<div className="row justify-content-center" style={{ width: "99.999%", paddingTop: "5%" }}>
 				<div className="col-sm-8">
